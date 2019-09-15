@@ -13,14 +13,14 @@ class App extends Component {
       currentItem: {
         text: '',
         key: '',
-        done: false
+        checked: false
       },
     }
   }
 
   handleInput = (e) => {
     const itemText = e.target.value
-    const currentItem = { text: itemText, key: Date.now(), done: false }
+    const currentItem = { text: itemText, key: Date.now(), checked: false }
     this.setState({
       currentItem,
     })
@@ -35,12 +35,9 @@ class App extends Component {
     })
   }
 
-  finishItem = (done) => {
-    const doneItems = this.state.items.filter(item => {
-      return item.done !== done;
-    })
+  doneItem = ({ text, checked }) => {
     this.setState({
-      items: doneItems,
+      items: this.state.items.map(item => item.text === text ? { text, checked: !checked } : item)
     })
   }
 
@@ -53,7 +50,7 @@ class App extends Component {
       const items = [...this.state.items, newItem]
       this.setState({
         items: items,
-        currentItem: { text: '', key: '', done: false },
+        currentItem: { text: '', key: '', checked: false },
       })
     }
   }
@@ -74,8 +71,8 @@ class App extends Component {
           <TodoItem 
             entries={this.state.items} 
             deleteItem={this.deleteItem} 
-            finishItem={this.finishItem}
-            />
+            taskCheck={this.doneItem}
+          />
         </section>
         <footer className="App-footer">
           &#169; Copyright 2019

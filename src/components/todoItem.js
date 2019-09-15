@@ -3,8 +3,12 @@ import React, { Component } from 'react'
 class TodoItem extends Component {
 	createTask = (item) => {
 		return (
-			<li key={item.key} className="task--item">
-        <span className={`task--content ${item.done ? "task--done": ""}`}>{item.text}</span>
+			<li className="task--item">
+				<label className="task--label">
+					<input type="checkbox" className="task--check" checked={item.checked} onChange={() => this.props.taskCheck(item)}/>
+					<span className="task--finish"></span>
+				</label>
+        <span className={`task--content ${item.checked ? "task--done" : ""}`}>{item.text}</span>
         <span className="task--close" onClick={() => this.props.deleteItem(item.key)}>&#10006;</span>
 			</li>
 		)

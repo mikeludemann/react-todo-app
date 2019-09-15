@@ -108,8 +108,8 @@ ul.todo--list--elements {
 }
 
 .complete--list .todo--list--elements li:hover {
-  background-color:#000088;
-  color:#fff;
+  background-color: #eee;
+  color: #fff;
   font-weight: bold;
   cursor: pointer;
   transition: all 1s ease-in-out;
@@ -120,7 +120,7 @@ ul.todo--list--elements {
 }
 
 .add--element {
-  width: 70%;
+  width: 72.5%;
 }
 
 .add--submit {
@@ -154,12 +154,53 @@ ul.todo--list--elements {
 
 .task--close {
   position: absolute;
-  right: 5%;
+  right: 2.5%;
+}
+
+.task--label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.task--label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.task--label input:checked ~ .task--finish {
+  background-color: #fff;
 }
 
 .task--done {
   color: rgba(0, 0, 0, 0.3);
   text-decoration: line-through;
+}
+
+.task--finish::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.task--label input:checked ~ .task--finish:after {
+  display: block;
+}
+
+.task--label .task--finish:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid #00ff22;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .hidden--checkbox {
