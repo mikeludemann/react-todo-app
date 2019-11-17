@@ -5,7 +5,7 @@ class TodoItem extends Component {
 		return (
 			<li className="task--item">
 				<label className="task--label">
-					<input type="checkbox" className="task--check" checked={item.checked} onChange={() => this.props.taskCheck(item)}/>
+					<input type="checkbox" id={item.key} key={item.key} className="task--check" checked={item.checked} onChange={() => this.props.taskCheck(item)}/>
 					<span className="task--finish"></span>
 				</label>
         <span className={`task--content ${item.checked ? "task--done" : ""}`}>{item.text}</span>
